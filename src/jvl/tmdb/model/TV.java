@@ -192,7 +192,7 @@ public class TV extends AbstractTMDBModel<TV>
             this.episode_runtime[i] = runtimes.getInt(i);
         }
         
-        this.first_air_date = json.getString("first_air_date");
+        this.first_air_date = json.optString("first_air_date");
         
         
         this.genres = new HashMap();        

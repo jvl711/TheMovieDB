@@ -43,7 +43,7 @@ public class TMDBRequestTest
 {    
     private static String movieResponse = "{\"adult\":false,\"backdrop_path\":\"/lmZFxXgJE3vgrciwuDib0N8CfQo.jpg\",\"belongs_to_collection\":{\"id\":86311,\"name\":\"The Avengers Collection\",\"poster_path\":\"/qJawKUQcIBha507UahUlX0keOT7.jpg\",\"backdrop_path\":\"/zuW6fOiusv4X9nnW3paHGfXcSll.jpg\"},\"budget\":300000000,\"genres\":[{\"id\":12,\"name\":\"Adventure\"},{\"id\":878,\"name\":\"Science Fiction\"},{\"id\":28,\"name\":\"Action\"}],\"homepage\":\"http://marvel.com/movies/movie/223/avengers_infinity_war_part_1\",\"id\":299536,\"imdb_id\":\"tt4154756\",\"original_language\":\"en\",\"original_title\":\"Avengers: Infinity War\",\"overview\":\"As the Avengers and their allies have continued to protect the world from threats too large for any one hero to handle, a new danger has emerged from the cosmic shadows: Thanos. A despot of intergalactic infamy, his goal is to collect all six Infinity Stones, artifacts of unimaginable power, and use them to inflict his twisted will on all of reality. Everything the Avengers have fought for has led up to this moment - the fate of Earth and existence itself has never been more uncertain.\",\"popularity\":210.234,\"poster_path\":\"/7WsyChQLEftFiDOVTGkv3hFpyyt.jpg\",\"production_companies\":[{\"id\":420,\"logo_path\":\"/hUzeosd33nzE5MCNsZxCGEKTXaQ.png\",\"name\":\"Marvel Studios\",\"origin_country\":\"US\"}],\"production_countries\":[{\"iso_3166_1\":\"US\",\"name\":\"United States of America\"}],\"release_date\":\"2018-04-25\",\"revenue\":2046239637,\"runtime\":149,\"spoken_languages\":[{\"iso_639_1\":\"en\",\"name\":\"English\"}],\"status\":\"Released\",\"tagline\":\"An entire universe. Once and for all.\",\"title\":\"Avengers: Infinity War\",\"video\":false,\"vote_average\":8.3,\"vote_count\":7979}";
     public static final Logger LOG = Logger.getLogger(TMDBRequestTest.class.getName());;
-    public static final String apikey = "";
+    public static final String apikey = "9f2734102601193cadb25780ea358edc";
     
     @BeforeClass
     public static void setUpClass() 
@@ -143,7 +143,7 @@ public class TMDBRequestTest
     {
         TMDBRequest request = new TMDBRequest(apikey);
         
-        SearchResults results = SearchAPI.searchMovies(request, "maleficent", 2019, false);
+        SearchResults results = SearchAPI.searchMovies(request, "luca", false);
         
         ArrayList<SearchResultMovie> movies = results.getMovies();
         
@@ -155,6 +155,7 @@ public class TMDBRequestTest
         for(int i = 0; i < movies.size(); i++)
         {
             System.out.println("\tTitle: " + movies.get(i).getTitle());
+            System.out.println("\t\tTitle: " + movies.get(i).getReleaseDate());
             System.out.println("\t\tID: " + movies.get(i).getTmdbID());
         }
         
@@ -189,7 +190,7 @@ public class TMDBRequestTest
         //5715
         TMDBRequest request = new TMDBRequest(apikey);
         
-        TV show = TVAPI.getDetails(request, 1399, false);
+        TV show = TVAPI.getDetails(request, 133541, false);
         
         System.out.println("Name: " + show.getName());
         System.out.println("Original Name: " + show.getOriginalName());
@@ -197,6 +198,7 @@ public class TMDBRequestTest
         System.out.println("Status: " + show.getStatus());
         System.out.println("Type: " + show.getType());
         System.out.println("ID: " + show.getTmdb_id());
+        System.out.println("First Air Date: " + show.getFirstAirDate());
         System.out.println("Genres: " + Arrays.toString(show.getGenres()));
         
         System.out.println("Season records: " + show.getSeasons().size());

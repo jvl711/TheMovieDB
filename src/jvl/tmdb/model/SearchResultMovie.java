@@ -57,7 +57,7 @@ public class SearchResultMovie
         //resultMovie.poster_path = json.optString("poster_path", "");
         resultMovie.adult = json.getBoolean("adult");
         resultMovie.overview = json.getString("overview");
-        resultMovie.release_date = json.getString("release_date");
+        resultMovie.release_date = json.optString("release_date");
         resultMovie.tmdb_id = json.getInt("id");
         resultMovie.original_title = json.getString("original_title");
         resultMovie.original_language = json.getString("original_language");

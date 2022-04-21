@@ -40,16 +40,17 @@ public class SearchResultShow
         JSONObject json = new JSONObject(data);
         
         resultShow.poster_path = json.optString("poster_path", "");
-        resultShow.popularity = json.getDouble("popularity");
+        resultShow.popularity = json.optDouble("popularity");
         resultShow.tmdb_id = json.getInt("id");
         resultShow.backdrop_path = json.optString("backdrop_path", "");
-        resultShow.vote_average = json.getDouble("vote_average");
-        resultShow.overview = json.getString("overview");
-        resultShow.first_air_date = json.getString("first_air_date");
+        resultShow.vote_average = json.optDouble("vote_average");
+        resultShow.overview = json.optString("overview");
+        resultShow.first_air_date = json.optString("first_air_date");
+        
         //origin_country
         //genre_ids
-        resultShow.original_language = json.getString("original_language");
-        resultShow.vote_count = json.getInt("vote_count");
+        resultShow.original_language = json.optString("original_language");
+        resultShow.vote_count = json.optInt("vote_count");
         resultShow.name = json.getString("name");
         resultShow.original_name = json.getString("original_name");
 

@@ -165,7 +165,7 @@ public class TMDBRequestTest
     public void SearchShows() throws IOException, RateLimitException
     {
         TMDBRequest request = new TMDBRequest(apikey);
-        SearchResults results = SearchAPI.searchTV(request, "Dark", false);
+        SearchResults results = SearchAPI.searchTV(request, "Halo", false);
 
         ArrayList<SearchResultShow> shows = results.getShows();
         

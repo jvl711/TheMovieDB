@@ -11,7 +11,7 @@
     <description>Builds, tests, and runs the project TheMovieDB.</description>
     <import file="nbproject/build-impl.xml"/>
     
-    <property name="build.version" value="1.0.5"/>
+    <property name="build.version" value="1.0.6"/>
     
     <buildnumber file="mybuild.number"/>
     <tstamp>

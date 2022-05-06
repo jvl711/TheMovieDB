@@ -14,6 +14,7 @@
     <property name="build.version" value="1.0.6"/>
     
     <buildnumber file="mybuild.number"/>
+    
     <tstamp>
         <format property="build.time" pattern="MM/dd/yyyy HH:mm:ss"/>
     </tstamp>
@@ -21,7 +22,13 @@
         <format property="build.date" pattern="yyyy.MM.dd"/>
     </tstamp>
     
-    <echo>Build version: ${build.version}</echo>
+    <target name="version">
+        <echo>Version: ${build.version}</echo>
+    </target>
+    
+    <target name="buildnumber">
+        <echo>Build Number: ${build.number}</echo>
+    </target>
     
     <target name="-pre-compile">
 

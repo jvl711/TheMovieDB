@@ -27,7 +27,7 @@
     </target>
     
     <target name="buildnumber">
-        <echo>Build Number: ${build.number}</echo>
+        <echo>BuildNumber: ${build.number}</echo>
     </target>
     
     <target name="-pre-compile">

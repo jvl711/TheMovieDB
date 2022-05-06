@@ -90,11 +90,9 @@ pipeline
             {
                 script
                 {
-                    VARIANT = getBuildType()
-
                     currentBuild.displayName = "${version}"
                     
-                    currentBuild.description += "<B>Version:</B> ${version}<BR>\n"
+                    currentBuild.description = "<B>Version:</B> ${version}<BR>\n"
                     currentBuild.description += "<B>Build Number:</B> ${buildnumber}<BR>\n"
                 }
             }
@@ -109,7 +107,7 @@ pipeline
                     sh "ant jar"
                     
 
-                    //archiveArtifacts artifacts: "android-tv/build/outputs/apk/${VARIANT}/android-tv-${VARIANT}.apk", onlyIfSuccessful: true
+                    archiveArtifacts artifacts: "dist/TheMovieDB.jar", onlyIfSuccessful: true
                 }
             }
         }
@@ -118,7 +116,6 @@ pipeline
         /*
         stage('Publish local')
         {
-             when { expression { return getReleaseLocal() } }
              steps
              {
                 cifsPublisher(publishers: [[configName: 'SageTVAndroidClient', transfers: [[cleanRemote: false, excludes: '', flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+', remoteDirectory: "builds/${version}/${VARIANT}", remoteDirectorySDF: false, removePrefix: "android-tv/build/outputs/bundle/${VARIANT}", sourceFiles: "android-tv/build/outputs/bundle/${VARIANT}/*.aab"]], usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: true]])

@@ -117,6 +117,21 @@ public class Images extends AbstractTMDBModel<Images>
         return stills;
     }
     
+    public Image getStill(String name)
+    {
+        for(int i = 0; i < this.stills.size(); i++)
+        {
+            Image image = this.stills.get(i);
+            
+            if(image.getFileName().equalsIgnoreCase(name))
+            {
+                return image;
+            }
+        }
+        
+        return null;
+    }
+    
     public Image getStill()
     {
         int still = 0;

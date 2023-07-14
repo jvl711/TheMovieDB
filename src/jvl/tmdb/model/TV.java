@@ -52,6 +52,11 @@ public class TV extends AbstractTMDBModel<TV>
         return values;
     }
 
+    public HashMap<Integer, String> getGenresRaw()
+    {
+        return this.genres;
+    }
+    
     public ArrayList<Season> getSeasons()
     {
         return seasons;

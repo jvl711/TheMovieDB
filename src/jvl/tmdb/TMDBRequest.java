@@ -102,6 +102,11 @@ public class TMDBRequest
         return Execute(section, id, secondarySection, secondaryId, null, -1, command , null, blocking);
     }
     
+    public TMDBResponse Execute(String section, String secondarySection, String command, boolean blocking) throws MalformedURLException, IOException, RateLimitException    
+    {
+        return Execute(section, -1, secondarySection, -1, null, -1, command , null, blocking);
+    }
+    
     public TMDBResponse Execute(String section, int id, String secondarySection, int secondaryId, String tertiarySection, int tertiaryId, String command, boolean blocking) throws MalformedURLException, IOException, RateLimitException    
     {
         

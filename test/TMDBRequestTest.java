@@ -6,8 +6,12 @@
 
 import java.io.File;
 import java.io.IOException;
+import java.net.MalformedURLException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Set;
 import java.util.logging.ConsoleHandler;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -19,6 +23,7 @@ import jvl.tmdb.RateLimitException;
 import jvl.tmdb.SearchAPI;
 import jvl.tmdb.TVAPI;
 import jvl.tmdb.TMDBRequest;
+import jvl.tmdb.TMDBResponse;
 import jvl.tmdb.model.Cast;
 import jvl.tmdb.model.Configuration;
 import jvl.tmdb.model.Credits;
@@ -190,7 +195,9 @@ public class TMDBRequestTest
         //5715
         TMDBRequest request = new TMDBRequest(apikey);
         
-        TV show = TVAPI.getDetails(request, 133541, false);
+        TV show = TVAPI.getDetails(request, 1399, false);
+        
+        
         
         System.out.println("Name: " + show.getName());
         System.out.println("Original Name: " + show.getOriginalName());
@@ -201,6 +208,14 @@ public class TMDBRequestTest
         System.out.println("First Air Date: " + show.getFirstAirDate());
         System.out.println("Genres: " + Arrays.toString(show.getGenres()));
         
+        HashMap<Integer, String> genres = show.getGenresRaw();
+        
+        for(Integer key : genres.keySet())
+        {
+            System.out.println("\tKey: " + key);
+            System.out.println("\tGenre: " + genres.get(key));
+        }
+        
         System.out.println("Season records: " + show.getSeasons().size());
 
         for(int i = 0; i < show.getSeasons().size(); i++)
@@ -209,6 +224,13 @@ public class TMDBRequestTest
             System.out.println("\tEpisode count: " + show.getSeasons().get(i).getEpisodeCount());
             System.out.println("\tName: " + show.getSeasons().get(i).getName());
             System.out.println("\tOverview: " + show.getSeasons().get(i).getOverview());
+            
+            
+            for(Episode episode : TVAPI.getSeasonDetails(request, 1399, show.getSeasons().get(i).getSeasonNumber(), true).getEpisodes())
+            {
+                System.out.println("\t\tEposidoe Number: " + episode.getEpisodeNumber());
+                System.out.println("\t\tID: " + episode.getTmdbID());
+            }
         }
     }
     
@@ -260,9 +282,12 @@ public class TMDBRequestTest
     {
         TMDBRequest request = new TMDBRequest(apikey);
         
-        Season season = TVAPI.getSeasonDetails(request, 69629, 3, false);
+        Season season = TVAPI.getSeasonDetails(request, 1399, 3, false);
         
         System.out.println("Season name: " + season.getName());
+        System.out.println("Season overview: " + season.getOverview());
+        System.out.println("Season air date: " + season.getAirDate());
+        
         
         ArrayList<Episode> episodes = season.getEpisodes();
         
@@ -400,6 +425,16 @@ public class TMDBRequestTest
         MovieReleases releases = MovieAPI.getReleases(request, 136799, true);
         
         System.out.println("Parental Rating: " + releases.getParentalRating());
+    }
+    
+    @Test
+    public void getTVGenres() throws IOException, MalformedURLException, RateLimitException
+    {
+        TMDBRequest request = new TMDBRequest(apikey);
+        
+        TMDBResponse response = request.Execute("genre", "tv", "list", true);
+        
+        System.out.println(response.getData());
     }
     
     @Test

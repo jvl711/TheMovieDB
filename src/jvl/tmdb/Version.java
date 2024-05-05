@@ -3,8 +3,8 @@ package jvl.tmdb;
 
 public class Version
 {
-    private final static String BUILDTIME = "10/31/2023 09:18:49";
-    private final static String BUILDNUMBER = "194";
+    private final static String BUILDTIME = "03/24/2024 09:09:10";
+    private final static String BUILDNUMBER = "230";
     private final static String VERSION = "1.0.6";
     
     public static String getVersion()

@@ -76,12 +76,22 @@ public class TV extends AbstractTMDBModel<TV>
     {
         return backdrop_path;
     }
-
+    
+    /***
+     * First episode runtime in list
+     * @return Episode runtime or 0 if one is not defined
+     */
     public int getEpisodeRuntime() 
     {
         //TODO: Enhance to return the shortest runtime....
-        
-        return episode_runtime[0];
+        if(episode_runtime.length > 0)
+        {
+            return episode_runtime[0];
+        }
+        else
+        {
+            return 0;
+        }
     }
 
     public String getFirstAirDate() 
